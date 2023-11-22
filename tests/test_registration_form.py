@@ -27,3 +27,9 @@ def test_complete_todo():
     browser.element('#submit').press_enter()
 
 
+    browser.element('#example-modal-sizes-title-lg').should(have.exact_text('Thanks for submitting the form'))
+    browser.element('.table-responsive').should(have.text(
+        'Mariya Mokretsova' and 'cameron105@mail.ru'
+        and 'Male' and '9066507373' and '27 June,1989'
+        and 'English' and 'run_girl.png'
+        and 'Sant-Peterburg' and 'Rajasthan Jaiselmer'))
