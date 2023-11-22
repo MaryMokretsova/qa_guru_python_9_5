@@ -1,11 +1,29 @@
-from selene import browser, have, be
+import os
+
+from selene import browser, have, be, by
 
 
 def test_complete_todo():
-    browser.open('/')
-    browser.element('#new-todo').should(be.blank)
+    browser.open('automation-practice-form')
+    browser.element('.practice-form-wrapper').should(have.text('Student Registration Form'))
 
-    browser.element('#new-todo').type('a').press_enter()
-    browser.element('#new-todo').type('b').press_enter()
-    browser.element('#new-todo').type('c').press_enter()
-    browser.all('#todo-list>li').should(have.size(3))
+    browser.element('#firstName').should(be.blank).type('Mariya')
+    browser.element('#lastName').should(be.blank).type('Mokretsova')
+    browser.element('#userEmail').should(be.blank).type('cameron105@mail.ru')
+    browser.element('#gender-radio-1').double_click()
+    browser.element('#userNumber').should(be.blank).type('9066507373')
+    browser.element('#dateOfBirthInput').click()
+    browser.element('.react-datepicker__month-select').click().type('June').press_enter()
+    browser.element('.react-datepicker__year-select').click().type('1989').press_enter()
+    browser.element('.react-datepicker__day--027').click()
+    browser.element('#subjectsInput').should(be.blank).type('English').press_enter()
+    browser.element('[for="hobbies-checkbox-1"]').double_click()
+    browser.element('#uploadPicture').send_keys(os.path.abspath(
+        'pictures/run_girl.png'))
+    browser.element('#currentAddress').should(be.blank).type('Sant-Peterburg')
+
+    browser.element('#react-select-3-input').type('Rajasthan').press_enter()
+    browser.element('#react-select-4-input').type('Jaiselmer').press_enter()
+    browser.element('#submit').press_enter()
+
+
